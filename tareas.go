@@ -58,29 +58,55 @@ func main() {
 
 	t1 := &task{ //Pointer to struct
 		name: "You should be finish this course of Go",
-		desc: "Its necesary completed this course for go to the next level.",
+		desc: "Desc Go",
 	}
 
 	t2 := &task{ //Pointer to struct
 		name: "You should be finish this course of Python",
-		desc: "Its necesary completed this course for go to the next level.",
+		desc: "Desc Pyton",
 	}
 
 	t3 := &task{ //Pointer to struct
 		name: "You should be finish this course of Scala",
-		desc: "Its necesary completed this course for go to the next level.",
+		desc: "Desc Scala",
 	}
 
-	listTasks := &taskList{
+	listTasksNestor := &taskList{
 		tasks: []*task{
 			t1, t2,
 		},
 	}
 
-	listTasks.addToList(t3)
-	listTasks.printList()
-	listTasks.tasks[0].isCompleted()
-	println("TAREAS COMPLETADAS: ")
-	listTasks.printCompletedTaskList()
+	listTasksNestor.addToList(t3)
+	listTasksNestor.tasks[0].isCompleted()
+	listTasksNestor.printCompletedTaskList()
+
+	taskMaps := make(map[string]*taskList)
+
+	taskMaps["Nestor"] = listTasksNestor
+
+	t4 := &task{ //Pointer to struct
+		name: "You should be finish this course of Java",
+		desc: "Desc Java",
+	}
+
+	t5 := &task{ //Pointer to struct
+		name: "You should be finish this course of Ruby",
+		desc: "Desc Ruby",
+	}
+
+	listTasksPerez := &taskList{
+		tasks: []*task{
+			t4, t5,
+		},
+	}
+
+	taskMaps["Perez"] = listTasksPerez
+
+	fmt.Println("Lista de tareas de Nestor:")
+	taskMaps["Nestor"].printList()
+
+	fmt.Println("Lista de tareas de Perez:")
+	taskMaps["Perez"].printList()
 
 }
